@@ -28,7 +28,7 @@ class BankAccount:
 
     def yield_interest(self):
         if self.balance >= 0:
-            self.balance = 1 + 1*self.int_rate
+            self.balance = self.balance + self.balance*self.int_rate
         return self
 
 
@@ -57,9 +57,12 @@ class User:
 #add second account option
 
 # Create a BankAccount class with the attributes interest rate and balance
-# class User:
-#     @classmethod
-#     def __
+class User:
+    @classmethod
+    def add_bank_account(self, int_rate, balance)
+            
+            return self
+
 #     def deposit(self,which_account):
 #         self.account.deposit(100)
 #         print(self.account.balance)
