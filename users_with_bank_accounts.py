@@ -31,29 +31,42 @@ class BankAccount:
             self.balance = self.balance + self.balance*self.int_rate
         return self
 
+
 # Update the User class __init__ method
 class User:
-    def __init__(self, name, email, account=BankAccount(int_rate=0.02, balance=0)):
+    def __init__(self, name, email):
         self.name = name
         self.email = email
-        self.account = account
+        self.account = BankAccount(int_rate=0.02, balance=0)
 
 # Update the User class make_deposit method
-    def deposit(self):
-        self.account.make_deposit()
+    def deposit(self, amount):
+        self.account.make_deposit(amount)
         print(self.account.balance)
+        return self
 
 # Update the User class make_withdrawal method
-    def withdrawl(self):
-        self.account.make_withdrawl()
+    def withdrawl(self, amount):
+        self.account.make_withdrawl(amount)
         print(self.account.balance)
+        return self
+
+    def transfer(self, amount, user_two):
+        self.account.make_withdrawl(amount)
+        user_two.account.make_deposit(amount)
+        print(self.name,self.account.balance)
+        print(user_two.name,user_two.account.balance)
+        return self
 
 # Update the User class display_user_balance method
     def display_user_balance(self):
         print(self.account.display_account_info())
+        return self
 
 luci = User("Lucifurr","lucifurr@numnums.com")
-luci.deposit(100).withdrawl(30).display_user_balance()
+shirley = User("Shirley","shirley@youcan'tbeserious.com")
+luci.deposit(100).withdrawl(10).transfer(200, shirley).display_user_balance()
+shirley.deposit(100).withdrawl(10).transfer(200, shirley).display_user_balance()
 
 # SENSEI BONUS: Allow a user to have multiple accounts; update methods so the user has to specify which account they are withdrawing or depositing to
 #change account option
